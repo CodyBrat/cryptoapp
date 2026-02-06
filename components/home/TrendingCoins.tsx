@@ -1,4 +1,5 @@
 import React from 'react'
+import { TrendingCoinsFallback } from '@/components/home/fallback'
 import { fetcher } from '@/lib/coingecko.actions'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,11 +8,17 @@ import { cn } from '@/lib/utils'
 import DataTable from '../DataTable'
 
 const TrendingCoins = async () => {
-  const trendingCoins = await fetcher<{ coins: TrendingCoin[] }>(
-    '/search/trending',
-    undefined,
-    300
-  )
+  let trendingCoins
+  try {
+    trendingCoins = await fetcher<{ coins: TrendingCoin[] }>(
+      '/search/trending',
+      undefined,
+      300
+    )
+  } catch (error) {
+    console.error('Failed to fetch trending coins:', error)
+    return <TrendingCoinsFallback />
+  }
   const columns: DataTableColumn<TrendingCoin>[] = [
     {
       header: 'Name',
@@ -61,16 +68,14 @@ const TrendingCoins = async () => {
   return (
     <div id="trending-coins">
       <h4>Trending Coins</h4>
-      <div id="trending-coins">
-        <DataTable
-          columns={columns}
-          data={trendingCoins.coins.slice(0, 6) || []}
-          rowKey={(coins) => coins.item.id}
-          tableClassName="trending-coins-table"
-          headerCellClassName="py-3!"
-          bodyCellClassName="py-2!"
-        />
-      </div>
+      <DataTable
+        columns={columns}
+        data={trendingCoins.coins.slice(0, 6) || []}
+        rowKey={(coins) => coins.item.id}
+        tableClassName="trending-coins-table"
+        headerCellClassName="py-3!"
+        bodyCellClassName="py-2!"
+      />
     </div>
   )
 }

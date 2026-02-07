@@ -4,8 +4,13 @@ import Link from "next/link";
 import DataTable from "@/components/DataTable";
 import { cn, formatPercentage } from "@/lib/utils";
 import { formatCurrency } from "@/lib/utils";
+import CoinsPagination from "@/components/CoinsPagination";
+
 
 const Coins = async ({ searchParams }: NextPageProps) => {
+    const {page}=await searchParams;
+    const currentPage = Number(page) || 1;
+    const perPage=10;
 
   const coinsData = await fetcher<CoinMarketData[]>("/coins/markets", {
     vs_currency: "usd",
@@ -67,6 +72,8 @@ const Coins = async ({ searchParams }: NextPageProps) => {
       cell: (coin) => formatCurrency(coin.market_cap),
     },
   ];
+  const hasMorePages = coinsData.length===perPage;
+  const estimatedTotalPages = currentPage >=100? Math.ceil(currentPage/100)*100+100:100;
 
   return (
     <main id="coins-page">
@@ -79,6 +86,7 @@ const Coins = async ({ searchParams }: NextPageProps) => {
           data={coinsData}
           rowKey={(coin) => coin.id}
         />
+        <CoinsPagination  currentPage={currentPage} hasMorePages={hasMorePages} totalPages={estimatedTotalPages}/>
       </div>
     </main>
   );

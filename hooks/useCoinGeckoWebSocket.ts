@@ -59,5 +59,12 @@ export const useCoinGeckoWebStocket=({coinId,poolId,liveInterval}:UseCoinGeckoWe
 
     },[coinId]);
 
+    useEffect(()=>{
+        if(!isWsReady)return;
+        const ws=wsRef.current;
+        if(!ws)return;
+        const send=(payload:Record<string,unknown>)=>ws.send(JSON.stringify(payload))
+    },[coinId,poolId, isWsReady, liveInterval])
+
     
 }

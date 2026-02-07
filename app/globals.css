@@ -204,14 +204,14 @@
   }
 
   #candlestick-chart {
-    @apply p-3 mt-5 rounded-lg bg-dark-500;
+    @apply mt-5 rounded-lg bg-dark-500 overflow-hidden;
 
     .chart-header {
-      @apply flex flex-col gap-3 xl:flex-row xl:items-center mb-4 font-semibold text-[#e6eef8] text-[20px];
+      @apply flex flex-col gap-3 xl:flex-row xl:items-center p-4 font-semibold text-[#e6eef8] text-[20px];
     }
 
     .button-group {
-      @apply flex gap-1 xl:gap-2 items-center;
+      @apply flex gap-1 xl:gap-2 items-center xl:ml-auto;
     }
 
     .config-button {

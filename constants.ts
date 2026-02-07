@@ -21,7 +21,7 @@ export const navItems = [
 ];
 
 const CHART_COLORS = {
-  background: '#0b1116',
+  background: '#1a2027',
   text: '#8f9fb1',
   grid: '#1a2332',
   border: '#1a2332',

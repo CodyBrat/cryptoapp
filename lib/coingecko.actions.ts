@@ -69,3 +69,48 @@ export async function getPools(
     return fallback;
   }
 }
+
+export async function searchCoins(query: string): Promise<SearchCoin[]> {
+  try {
+    const searchData = await fetcher<{ coins: (SearchCoin & { id: string })[] }>(
+      '/search',
+      { query }
+    );
+
+    const coins = searchData.coins.slice(0, 10);
+    const coinIds = coins.map((coin) => coin.id).join(',');
+
+    const marketData = await fetcher<CoinMarketData[]>(
+      '/coins/markets',
+      {
+        vs_currency: 'usd',
+        ids: coinIds,
+        price_change_percentage: '24h',
+      }
+    );
+
+    const marketDataMap = new Map(
+      marketData.map((coin) => [coin.id, coin])
+    );
+
+    return coins.map((coin) => {
+      const marketCoin = marketDataMap.get(coin.id);
+      return {
+        id: coin.id,
+        name: coin.name,
+        symbol: coin.symbol,
+        market_cap_rank: coin.market_cap_rank,
+        thumb: coin.thumb,
+        large: coin.large,
+        data: {
+          price: marketCoin?.current_price,
+          price_change_percentage_24h:
+            marketCoin?.price_change_percentage_24h ?? 0,
+        },
+      };
+    });
+  } catch (error) {
+    console.error('Search error:', error);
+    return [];
+  }
+}

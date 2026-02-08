@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -6,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-figtree);
+  --font-mono: var(--font-figtree);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -143,20 +145,21 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 transition-colors duration-200;
   }
   body {
-    @apply bg-dark-700 text-foreground;
+    @apply bg-dark-700 text-foreground font-sans;
+    font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 }
 
 @layer components {
   .container {
-    @apply px-4 sm:px-6 mx-auto max-w-360;
+    @apply px-5 sm:px-8 mx-auto max-w-360;
   }
 
   .main-container {
-    @apply py-6 md:py-12 mx-auto px-4 sm:px-6 max-w-360 w-full space-y-6 md:space-y-6;
+    @apply py-8 md:py-16 mx-auto px-5 sm:px-8 max-w-360 w-full space-y-8 md:space-y-10;
   }
 
   .badge {
@@ -176,24 +179,25 @@
   }
 
   header {
-    @apply border-b border-dark-400 h-20;
+    @apply border-b border-dark-400/50 h-24 backdrop-blur-sm;
+    transition: all 0.3s ease;
 
     .inner {
       @apply flex justify-between items-center h-full;
 
       a {
-        @apply mb-0;
+        @apply mb-0 transition-transform duration-300 hover:scale-105;
       }
 
       nav {
-        @apply flex h-full items-center;
+        @apply flex h-full items-center gap-1;
 
         .nav-link {
-          @apply px-6 py-5 flex items-center transition-all hover:text-white font-medium h-full text-purple-100 cursor-pointer;
+          @apply px-7 py-6 flex items-center transition-all duration-300 hover:text-white hover:bg-dark-500/30 font-medium h-full text-purple-100 cursor-pointer rounded-lg;
         }
 
         .nav-link.is-active {
-          @apply text-white;
+          @apply text-white bg-dark-500/50;
         }
 
         .nav-link.is-home {
@@ -223,12 +227,12 @@
     }
 
     .chart {
-      @apply w-full min-h-50;
+      @apply w-full min-h-50 transition-all duration-300;
     }
   }
 
   #coin-card {
-    @apply bg-dark-500 hover:bg-dark-400/50 transition-all rounded-lg p-5 border border-purple-600/20 hover:border-purple-600/50 cursor-pointer h-fit;
+    @apply bg-dark-500 hover:bg-dark-400/50 transition-all duration-300 rounded-xl p-6 border border-purple-600/20 hover:border-purple-600/50 cursor-pointer h-fit shadow-lg hover:shadow-xl hover:shadow-purple-600/10 hover:-translate-y-1;
 
     .header {
       @apply flex gap-3 mb-4;
@@ -242,7 +246,7 @@
       }
 
       p {
-        @apply text-sm text-gray-400 uppercase;
+        @apply text-sm text-gray-400 uppercase font-medium;
       }
     }
 
@@ -276,7 +280,7 @@
   }
 
   #categories {
-    @apply pt-8 mt-5 w-full bg-dark-500 rounded-xl overflow-hidden;
+    @apply pt-10 mt-6 w-full bg-dark-500 rounded-2xl overflow-hidden shadow-lg border border-purple-600/10;
 
     h4 {
       @apply text-xl md:text-2xl font-semibold mb-2 pl-5;
@@ -312,7 +316,7 @@
   }
 
   #trending-coins {
-    @apply w-full flex flex-col justify-center h-full py-4 bg-dark-500 rounded-xl;
+    @apply w-full flex flex-col justify-center h-full py-6 bg-dark-500 rounded-2xl shadow-lg border border-purple-600/10;
 
     h4 {
       @apply text-xl md:text-2xl font-semibold mb-2 px-5;
@@ -352,7 +356,7 @@
   }
 
   .home-grid {
-    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-start lg:items-center gap-6;
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-start lg:items-center gap-8;
   }
 
   #categories-fallback {
@@ -519,7 +523,7 @@
     }
 
     .exchange-table {
-      @apply bg-dark-500 rounded-xl overflow-hidden mt-5;
+      @apply bg-dark-500 rounded-2xl overflow-hidden mt-5 shadow-lg border border-purple-600/10;
 
       .exchange-name {
         @apply text-green-500 font-bold;
@@ -583,7 +587,7 @@
     }
 
     .coins-table {
-      @apply bg-dark-500 rounded-xl max-h-fit overflow-hidden;
+      @apply bg-dark-500 rounded-2xl max-h-fit overflow-hidden shadow-lg border border-purple-600/10;
 
       .rank-cell {
         @apply pl-5 max-w-20! py-5 font-medium text-purple-100;
@@ -633,7 +637,7 @@
     }
 
     .dialog {
-      @apply bg-dark-400! max-w-sm sm:max-w-md md:max-w-2xl mx-auto;
+      @apply bg-dark-400! max-w-sm sm:max-w-md md:max-w-2xl mx-auto rounded-2xl shadow-2xl border border-purple-600/20;
     }
 
     .cmd-input {
@@ -645,7 +649,7 @@
     }
 
     .list {
-      @apply bg-dark-500 max-h-100;
+      @apply bg-dark-500 max-h-100 rounded-lg;
     }
 
     .heading {
@@ -663,7 +667,7 @@
     }
 
     .search-item {
-      @apply grid grid-cols-4 gap-4 items-center justify-between data-[selected=true]:bg-dark-400 transition-all !cursor-pointer hover:bg-dark-400 py-3;
+      @apply grid grid-cols-4 gap-4 items-center justify-between data-[selected=true]:bg-dark-400 transition-all duration-300 !cursor-pointer hover:bg-dark-400 py-3 rounded-lg mx-2;
 
       .coin-info {
         @apply flex gap-4 items-center col-span-2;
@@ -699,11 +703,11 @@
     }
 
     .panel {
-      @apply space-y-2 bg-dark-500 px-5 py-7 rounded-lg;
+      @apply space-y-2 bg-dark-500 px-6 py-8 rounded-xl shadow-lg border border-purple-600/10;
     }
 
     .input-wrapper {
-      @apply bg-dark-400 h-12 w-full rounded-md flex items-center justify-between py-4 pr-4;
+      @apply bg-dark-400 h-14 w-full rounded-lg flex items-center justify-between py-4 pr-4 transition-all duration-200 hover:bg-dark-400/80;
 
       .input {
         @apply flex-1 text-lg! border-none font-medium bg-dark-400! focus-visible:ring-0 shadow-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none;
@@ -731,7 +735,7 @@
     }
 
     .output-wrapper {
-      @apply bg-dark-400 h-12 w-full rounded-md flex items-center justify-between py-4 pl-4;
+      @apply bg-dark-400 h-14 w-full rounded-lg flex items-center justify-between py-4 pl-4 transition-all duration-200;
 
       p {
         @apply text-base font-medium;
@@ -812,7 +816,7 @@
   }
 
   #coin-overview {
-    @apply w-full h-full xl:col-span-2 px-2 bg-dark-500 rounded-xl;
+    @apply w-full h-full xl:col-span-2 px-2 bg-dark-500 rounded-2xl shadow-lg border border-purple-600/10;
 
     .header {
       @apply flex-1 mb-2 flex gap-2 md:gap-3;

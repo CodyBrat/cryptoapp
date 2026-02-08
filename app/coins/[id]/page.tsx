@@ -3,7 +3,7 @@ import { fetcher, getPools } from '@/lib/coingecko.actions';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { formatCurrency } from '@/lib/utils';
-import LiveDataWrapper from '@/components/LiveDataWrapper';
+import { LiveDataWrapper } from '@/components/LiveDataWrapper';
 import Converter from '@/components/Converter';
 
 const Page = async ({ params }: NextPageProps) => {

@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'CryptoApp',
-  description: 'CryptoApp',
+  title: 'Crypteq',
+  description: 'Track crypto prices, market cap, volume, and more.',
 }
 
 export default async function RootLayout({

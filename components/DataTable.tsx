@@ -15,7 +15,6 @@ const DataTable = <T,>({
   data,
   rowKey,
   tableClassName,
-  headerClassName,
   headerRowClassName,
   headerCellClassName,
   bodyRowClassName,

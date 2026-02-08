@@ -19,7 +19,6 @@ export const useCoinGeckoWebSocket = ({
     const [isWsReady, setIsWsReady] = useState(false);
 
     useEffect(() => {
-        // Skip WebSocket connection if poolId is empty
         if (!poolId) {
             console.warn('WebSocket: Skipping connection - poolId is empty');
             return;

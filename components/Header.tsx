@@ -13,7 +13,7 @@ const Header = ({ trendingCoins = [] }: HeaderProps) => {
     <header>
       <div className="main-container inner">
         <Link href="/">
-          <Image src="/assets/logo.svg" alt="Logo" width={130} height={40} />
+          <Image src="/assets/logo.png" alt="Logo" width={130} height={40} />
         </Link>
         <nav>
           <Link

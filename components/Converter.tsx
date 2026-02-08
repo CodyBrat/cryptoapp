@@ -43,7 +43,7 @@ const Converter = ({ symbol, icon, priceList }: ConverterProps) => {
         <div className="divider">
           <div className="line" />
 
-          <Image src="/converter.svg" alt="converter" width={32} height={32} className="icon" />
+          <Image src="/assets/convertericon.png" alt="converter" width={32} height={32} className="icon" />
         </div>
 
         <div className="output-wrapper">

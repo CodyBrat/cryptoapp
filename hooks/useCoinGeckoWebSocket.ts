@@ -64,7 +64,61 @@ export const useCoinGeckoWebStocket=({coinId,poolId,liveInterval}:UseCoinGeckoWe
         const ws=wsRef.current;
         if(!ws)return;
         const send=(payload:Record<string,unknown>)=>ws.send(JSON.stringify(payload))
+        const unsubscribeAll=()=>{
+            subscribed.current.forEach((channel)=>{
+                send({
+                    command:'unsubscribe',
+                    identifier:JSON.stringify({channel})
+                })
+            })
+            subscribed.current.clear();
+        };
+        const subscribe=(channel:string,data?:Record<string,unknown>)=>{
+            if(subscribed.current.has(channel))return;
+            send({
+                command:'subscribe',
+                identifier:JSON.stringify({channel})
+            })
+            if(data){
+                send({
+                    command:'message',
+                    identifier:JSON.stringify({channel}),
+                    data:JSON.stringify(data)
+                })
+            }
+        }
+        queueMicrotask(()=>{
+            setPrice(null);
+            setTrades([]);
+            setOhlcv(null);
+            unsubscribeAll();
+            subscribe('CGSimplePrice',{
+                coin_id:[coinId],
+                action:'set_token',
+                
+            })
+        })
+        const poolAddress=poolId.replace('_',':')
+        if(poolAddress){
+            subscribe('OnchainTrade',{
+                'network_id:pool_addresses':[poolAddress],
+                'action':'set_pools'
+            })
+            subscribe('OnchainOHLCV',{
+                'network_id:pool_addresses':[poolAddress],
+                'action':'set_pools',
+                'interval':liveInterval
+            })
+        }
+        
     },[coinId,poolId, isWsReady, liveInterval])
+    return{
+        price,
+        trades,
+        ohlcv,
+        isConnected:isWsReady,
+        
+    }
 
     
 }

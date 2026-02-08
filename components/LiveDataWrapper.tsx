@@ -6,7 +6,7 @@ import {useCoinGeckoWebSocket} from '@/hooks/useCoinGeckoWebSocket';
 import DataTable from '@/components/DataTable';
 import { formatCurrency, timeAgo } from '@/lib/utils';
 import { useState } from 'react';
-import CoinHeader from '@/components/CoinHeader';
+import CoinHeader from './CoinHeader';
 
 const LiveDataWrapper = ({ children, coinId, poolId, coin, coinOHLCData }: LiveDataProps) => {
   const [liveInterval, setLiveInterval] = useState<'1s' | '1m'>('1s');

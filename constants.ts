@@ -21,14 +21,14 @@ export const navItems = [
 ];
 
 const CHART_COLORS = {
-  background: '#1a2027',
+  background: 'transparent',
   text: '#8f9fb1',
-  grid: '#1a2332',
-  border: '#1a2332',
+  grid: '#ffffff0d',
+  border: '#ffffff0d',
   crosshairVertical: '#ffffff40',
   crosshairHorizontal: '#ffffff20',
-  candleUp: '#158A6E',
-  candleDown: '#EB1C36',
+  candleUp: '#4ade80',
+  candleDown: '#f87171',
 } as const;
 
 export const getCandlestickConfig = (): CandlestickSeriesPartialOptions => ({

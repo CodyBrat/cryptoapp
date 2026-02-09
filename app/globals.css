@@ -93,7 +93,6 @@
   --sidebar-ring: oklch(0.708 0 0);
 
 
-  /* Brand colors (Light Mode - kept for reference, but we are fixing Dark Mode) */
   --dark-900: #000510;
   --dark-700: #0f1316;
   --dark-500: #1a2027;
@@ -108,12 +107,11 @@
 }
 
 .dark {
-  /* Deep Black Background */
-  --background: oklch(0.1 0 0); /* Almost pure black */
+  --background: oklch(0.1 0 0);
   --foreground: oklch(0.985 0 0);
 
-  /* Glassmorphism Cards */
-  --card: oklch(0.15 0 0 / 0.4); /* Very transparent black */
+
+  --card: oklch(0.15 0 0 / 0.4);
   --card-foreground: oklch(0.985 0 0);
   
   --popover: oklch(0.15 0 0 / 0.8);
@@ -133,10 +131,9 @@
   
   --destructive: oklch(0.6 0.2 20);
   
-  /* Subtle Borders */
-  --border: oklch(1 0 0 / 0.08); /* Faint white border */
+  --border: oklch(1 0 0 / 0.08);
   --input: oklch(1 0 0 / 0.1);
-  --ring: oklch(0.6 0.2 270); /* Purple ring */
+  --ring: oklch(0.6 0.2 270);
 
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
@@ -153,14 +150,13 @@
   --sidebar-border: oklch(1 0 0 / 0.08);
   --sidebar-ring: oklch(0.6 0.2 270);
 
-  /* Updated Brand Colors for Deep Dark Theme */
-  --dark-900: #050505; /* Main bg */
-  --dark-700: #0a0a0a; /* Slightly lighter */
-  --dark-500: rgba(255, 255, 255, 0.03); /* Glass card bg */
-  --dark-400: rgba(255, 255, 255, 0.07); /* Glass hover bg */
+  --dark-900: #050505;
+  --dark-700: #0a0a0a;
+  --dark-500: rgba(255, 255, 255, 0.03);
+  --dark-400: rgba(255, 255, 255, 0.07);
 
-  --purple-600: #7c3aed; /* More vibrant purple */
-  --purple-100: #e9d5ff; /* Light purple text */
+  --purple-600: #7c3aed;
+  --purple-100: #e9d5ff;
 
   --green-500: #4ade80;
   --green-400: #22c55e;
@@ -247,15 +243,15 @@
     }
 
     .button-group {
-      @apply flex gap-1 xl:gap-2 items-center xl:ml-auto;
+      @apply flex flex-wrap gap-1 xl:gap-2 items-center xl:ml-auto;
     }
 
     .config-button {
-      @apply rounded-sm border-0 cursor-pointer px-2.5 py-2 text-xs xl:text-sm text-purple-100 hover:bg-white/10 hover:text-white;
+      @apply rounded-sm border-0 cursor-pointer px-2 py-1.5 text-xs xl:text-sm text-purple-100 hover:bg-white/10 hover:text-white;
     }
 
     .config-button-active {
-      @apply rounded-sm px-2.5 py-1.5 border-0 cursor-pointer text-sm text-gray-900 bg-green-500;
+      @apply rounded-sm px-2 py-1.5 border-0 cursor-pointer text-xs xl:text-sm text-gray-900 bg-green-500;
     }
 
     .chart {
@@ -962,7 +958,6 @@
   }
 }
 
-/* Custom Scrollbar Styles */
 .custom-scrollbar::-webkit-scrollbar {
   width: 7px;
   height: 7px;
@@ -981,7 +976,6 @@
   background: #171a34;
 }
 
-/* Table Custom Scrollbar */
 .custom-scrollbar [data-slot='table-container'] {
   overflow-y: auto;
 }

@@ -91,56 +91,83 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+
+  /* Brand colors (Light Mode - kept for reference, but we are fixing Dark Mode) */
+  --dark-900: #000510;
+  --dark-700: #0f1316;
+  --dark-500: #1a2027;
+  --dark-400: #1e2833;
+  --purple-600: #1b254b;
+  --purple-100: #a3aed0;
+  --green-500: #76da44;
+  --green-400: #2ebe7b;
+  --green-300: #99e39e;
+  --red-500: #ff685f;
+  --yellow-500: #dabe44;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  /* Deep Black Background */
+  --background: oklch(0.1 0 0); /* Almost pure black */
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+
+  /* Glassmorphism Cards */
+  --card: oklch(0.15 0 0 / 0.4); /* Very transparent black */
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  
+  --popover: oklch(0.15 0 0 / 0.8);
   --popover-foreground: oklch(0.985 0 0);
+  
   --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --primary-foreground: oklch(0.1 0 0);
+  
+  --secondary: oklch(0.2 0 0 / 0.5);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
+  
+  --muted: oklch(0.2 0 0 / 0.5);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  
+  --accent: oklch(0.2 0 0 / 0.5);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  
+  --destructive: oklch(0.6 0.2 20);
+  
+  /* Subtle Borders */
+  --border: oklch(1 0 0 / 0.08); /* Faint white border */
+  --input: oklch(1 0 0 / 0.1);
+  --ring: oklch(0.6 0.2 270); /* Purple ring */
+
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
+  
+  --sidebar: oklch(0.1 0 0 / 0.8);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.6 0.2 270);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.2 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-border: oklch(1 0 0 / 0.08);
+  --sidebar-ring: oklch(0.6 0.2 270);
 
-  /* Brand colors */
-  --dark-900: #000510;
-  --dark-700: #0f1316;
-  --dark-500: #1a2027;
-  --dark-400: #1e2833;
+  /* Updated Brand Colors for Deep Dark Theme */
+  --dark-900: #050505; /* Main bg */
+  --dark-700: #0a0a0a; /* Slightly lighter */
+  --dark-500: rgba(255, 255, 255, 0.03); /* Glass card bg */
+  --dark-400: rgba(255, 255, 255, 0.07); /* Glass hover bg */
 
-  --purple-600: #1b254b;
-  --purple-100: #a3aed0;
+  --purple-600: #7c3aed; /* More vibrant purple */
+  --purple-100: #e9d5ff; /* Light purple text */
 
-  --green-500: #76da44;
-  --green-400: #2ebe7b;
-  --green-300: #99e39e;
+  --green-500: #4ade80;
+  --green-400: #22c55e;
+  --green-300: #86efac;
 
-  --red-500: #ff685f;
-  --yellow-500: #dabe44;
+  --red-500: #f87171;
+  --yellow-500: #facc15;
 }
 
 @layer base {
@@ -148,8 +175,13 @@
     @apply border-border outline-ring/50 transition-colors duration-200;
   }
   body {
-    @apply bg-dark-700 text-foreground font-sans;
+    @apply bg-[#050505] text-foreground font-sans min-h-screen relative overflow-x-hidden;
     font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-image: 
+      radial-gradient(circle at 15% 0%, rgba(120, 50, 255, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 85% 0%, rgba(255, 70, 70, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 50% 100%, rgba(50, 100, 255, 0.1) 0%, transparent 50%);
+    background-attachment: fixed;
   }
 }
 
@@ -179,7 +211,7 @@
   }
 
   header {
-    @apply border-b border-dark-400/50 h-24 backdrop-blur-sm;
+    @apply border-b border-white/5 h-24 backdrop-blur-md sticky top-0 z-50;
     transition: all 0.3s ease;
 
     .inner {
@@ -193,11 +225,11 @@
         @apply flex h-full items-center gap-1;
 
         .nav-link {
-          @apply px-7 py-6 flex items-center transition-all duration-300 hover:text-white hover:bg-dark-500/30 font-medium h-full text-purple-100 cursor-pointer rounded-lg;
+          @apply px-7 py-6 flex items-center transition-all duration-300 hover:text-white hover:bg-white/5 font-medium h-full text-purple-100 cursor-pointer rounded-lg;
         }
 
         .nav-link.is-active {
-          @apply text-white bg-dark-500/50;
+          @apply text-white bg-white/10;
         }
 
         .nav-link.is-home {
@@ -208,7 +240,7 @@
   }
 
   #candlestick-chart {
-    @apply mt-5 rounded-lg bg-dark-500 overflow-hidden;
+    @apply mt-5 rounded-lg bg-dark-500 backdrop-blur-md border border-white/5 overflow-hidden;
 
     .chart-header {
       @apply flex flex-col gap-3 xl:flex-row xl:items-center p-4 font-semibold text-[#e6eef8] text-[20px];
@@ -219,7 +251,7 @@
     }
 
     .config-button {
-      @apply rounded-sm border-0 cursor-pointer px-2.5 py-2 text-xs xl:text-sm text-purple-100 hover:bg-dark-400 hover:text-white;
+      @apply rounded-sm border-0 cursor-pointer px-2.5 py-2 text-xs xl:text-sm text-purple-100 hover:bg-white/10 hover:text-white;
     }
 
     .config-button-active {
@@ -232,7 +264,7 @@
   }
 
   #coin-card {
-    @apply bg-dark-500 hover:bg-dark-400/50 transition-all duration-300 rounded-xl p-6 border border-purple-600/20 hover:border-purple-600/50 cursor-pointer h-fit shadow-lg hover:shadow-xl hover:shadow-purple-600/10 hover:-translate-y-1;
+    @apply bg-dark-500 backdrop-blur-md hover:bg-dark-400 transition-all duration-300 rounded-xl p-6 border border-white/5 hover:border-purple-600/30 cursor-pointer h-fit shadow-lg hover:shadow-xl hover:shadow-purple-600/10 hover:-translate-y-1;
 
     .header {
       @apply flex gap-3 mb-4;
@@ -280,7 +312,7 @@
   }
 
   #categories {
-    @apply pt-10 mt-6 w-full bg-dark-500 rounded-2xl overflow-hidden shadow-lg border border-purple-600/10;
+    @apply pt-10 mt-6 w-full bg-dark-500 backdrop-blur-md rounded-2xl overflow-hidden shadow-lg border border-white/5;
 
     h4 {
       @apply text-xl md:text-2xl font-semibold mb-2 pl-5;
@@ -316,14 +348,14 @@
   }
 
   #trending-coins {
-    @apply w-full flex flex-col justify-center h-full py-6 bg-dark-500 rounded-2xl shadow-lg border border-purple-600/10;
+    @apply w-full flex flex-col justify-center h-full py-6 bg-dark-500 backdrop-blur-md rounded-2xl shadow-lg border border-white/5;
 
     h4 {
       @apply text-xl md:text-2xl font-semibold mb-2 px-5;
     }
 
     .trending-coins-table {
-      @apply bg-dark-500 overflow-hidden;
+      @apply bg-transparent overflow-hidden;
 
       .name-cell {
         @apply font-bold;
@@ -523,7 +555,7 @@
     }
 
     .exchange-table {
-      @apply bg-dark-500 rounded-2xl overflow-hidden mt-5 shadow-lg border border-purple-600/10;
+      @apply bg-dark-500 backdrop-blur-md rounded-2xl overflow-hidden mt-5 shadow-lg border border-white/5;
 
       .exchange-name {
         @apply text-green-500 font-bold;
@@ -561,7 +593,7 @@
         @apply rounded-lg grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-3 sm:gap-5;
 
         li {
-          @apply text-base bg-dark-500 px-5 py-6 rounded-lg flex flex-col gap-3;
+          @apply text-base bg-dark-500 backdrop-blur-md border border-white/5 px-5 py-6 rounded-lg flex flex-col gap-3;
 
           .label {
             @apply text-purple-100;
@@ -587,7 +619,7 @@
     }
 
     .coins-table {
-      @apply bg-dark-500 rounded-2xl max-h-fit overflow-hidden shadow-lg border border-purple-600/10;
+      @apply bg-dark-500 backdrop-blur-md rounded-2xl max-h-fit overflow-hidden shadow-lg border border-white/5;
 
       .rank-cell {
         @apply pl-5 max-w-20! py-5 font-medium text-purple-100;
@@ -637,19 +669,19 @@
     }
 
     .dialog {
-      @apply bg-dark-400! max-w-sm sm:max-w-md md:max-w-2xl mx-auto rounded-2xl shadow-2xl border border-purple-600/20;
+      @apply bg-dark-400! backdrop-blur-xl max-w-sm sm:max-w-md md:max-w-2xl mx-auto rounded-2xl shadow-2xl border border-white/10;
     }
 
     .cmd-input {
-      @apply bg-dark-500!;
+      @apply bg-transparent!;
 
       input {
-        @apply placeholder:text-purple-100!;
+        @apply placeholder:text-purple-100! bg-transparent!;
       }
     }
 
     .list {
-      @apply bg-dark-500 max-h-100 rounded-lg;
+      @apply bg-transparent max-h-100 rounded-lg;
     }
 
     .heading {
@@ -703,7 +735,7 @@
     }
 
     .panel {
-      @apply space-y-2 bg-dark-500 px-6 py-8 rounded-xl shadow-lg border border-purple-600/10;
+      @apply space-y-2 bg-dark-500 backdrop-blur-md px-6 py-8 rounded-xl shadow-lg border border-white/5;
     }
 
     .input-wrapper {
@@ -816,7 +848,7 @@
   }
 
   #coin-overview {
-    @apply w-full h-full xl:col-span-2 px-2 bg-dark-500 rounded-2xl shadow-lg border border-purple-600/10;
+    @apply w-full h-full xl:col-span-2 px-2 bg-dark-500 backdrop-blur-md rounded-2xl shadow-lg border border-white/5;
 
     .header {
       @apply flex-1 mb-2 flex gap-2 md:gap-3;

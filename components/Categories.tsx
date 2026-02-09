@@ -9,12 +9,13 @@ import { TrendingDown, TrendingUp } from 'lucide-react'
 
 
 const Categories = async () => {
-    const categories = await fetcher<Category[]>(`/coins/categories`)
-    const columns:DataTableColumn<Category>[]=[
-        {header:'Category',cellClassName:'category-cell',cell:(category)=>category.name},
-        {header:'Top Gainers',cellClassName:'top-gainers-cell',cell:(category)=>category.top_3_coins.map((coin)=>(<Image src={coin} alt={coin} key={coin} width={28} height={28}/>))},
-        {header:'24h Change',cellClassName:'change-header-cell',
-            cell: (category) => {
+  const categories = await fetcher<Category[]>(`/coins/categories`)
+  const columns: DataTableColumn<Category>[] = [
+    { header: 'Category', cellClassName: 'category-cell', cell: (category) => category.name },
+    { header: 'Top Gainers', cellClassName: 'top-gainers-cell max-md:hidden', headClassName: 'max-md:hidden', cell: (category) => category.top_3_coins.map((coin) => (<Image src={coin} alt={coin} key={coin} width={28} height={28} />)) },
+    {
+      header: '24h Change', cellClassName: 'change-header-cell',
+      cell: (category) => {
         const isTrendingUp = category.market_cap_change_24h > 0
         return (
           <div
@@ -33,16 +34,17 @@ const Categories = async () => {
             </p>
           </div>
         )
-      }},
-        {header:'Market Cap',cellClassName:'market-cap-cell',cell:(category)=>formatCurrency(category.market_cap)},
-        {header:'24h Volume',cellClassName:'24h-volume-cell',cell:(category)=>formatCurrency(category.volume_24h)},
-    ]
+      }
+    },
+    { header: 'Market Cap', cellClassName: 'market-cap-cell', cell: (category) => formatCurrency(category.market_cap) },
+    { header: '24h Volume', cellClassName: '24h-volume-cell max-md:hidden', headClassName: 'max-md:hidden', cell: (category) => formatCurrency(category.volume_24h) },
+  ]
   return (
     <div id='categories' className='custom-scrollbar'>
-        <h4>Top Categories</h4>
-        <DataTable columns={columns} 
-        data={categories?.slice(0,10)} 
-        rowKey={(_,index)=>index}/>
+      <h4>Top Categories</h4>
+      <DataTable columns={columns}
+        data={categories?.slice(0, 10)}
+        rowKey={(_, index) => index} />
     </div>
   )
 }

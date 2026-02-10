@@ -49,12 +49,12 @@ const LiveDataWrapper = ({ children, coinId, poolId, coin, coinOHLCData }: LiveD
       <CoinHeader
         name={coin.name}
         image={coin.image.large}
-        livePrice={price?.usd ?? coin.market_data.current_price.usd}
+        livePrice={price?.inr ?? coin.market_data.current_price.inr}
         livePriceChangePercentage24h={
-          price?.change24h ?? coin.market_data.price_change_percentage_24h_in_currency.usd
+          price?.change24h ?? coin.market_data.price_change_percentage_24h_in_currency.inr
         }
-        priceChangePercentage30d={coin.market_data.price_change_percentage_30d_in_currency.usd}
-        priceChange24h={coin.market_data.price_change_24h_in_currency.usd}
+        priceChangePercentage30d={coin.market_data.price_change_percentage_30d_in_currency.inr}
+        priceChange24h={coin.market_data.price_change_24h_in_currency.inr}
       />
       <Separator className="divider" />
 

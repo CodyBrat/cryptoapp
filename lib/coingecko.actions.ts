@@ -83,7 +83,7 @@ export async function searchCoins(query: string): Promise<SearchCoin[]> {
     const marketData = await fetcher<CoinMarketData[]>(
       '/coins/markets',
       {
-        vs_currency: 'usd',
+        vs_currency: 'inr',
         ids: coinIds,
         price_change_percentage: '24h',
       }

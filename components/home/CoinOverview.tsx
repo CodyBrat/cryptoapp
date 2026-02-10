@@ -11,7 +11,7 @@ const CoinOverview = async () => {
         dex_pair_format: 'symbol',
       }),
       fetcher<OHLCData[]>('/coins/bitcoin/ohlc', {
-        vs_currency: 'usd',
+        vs_currency: 'inr',
         days: 1,
         precision: 'full',
       }),
@@ -26,7 +26,7 @@ const CoinOverview = async () => {
               <p>
                 {coin.name} / {coin.symbol.toUpperCase()}
               </p>
-              <h1>{formatCurrency(coin.market_data.current_price.usd)}</h1>
+              <h1>{formatCurrency(coin.market_data.current_price.inr)}</h1>
             </div>
           </div>
         </CandlestickChart>

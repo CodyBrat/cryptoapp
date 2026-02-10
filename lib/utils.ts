@@ -12,18 +12,21 @@ export function formatCurrency(
   showSymbol?: boolean,
 ) {
   if (value === null || value === undefined || isNaN(value)) {
-    return showSymbol !== false ? '$0.00' : '0.00';
+    return showSymbol !== false ? '₹0.00' : '0.00';
   }
 
+  const targetCurrency = currency?.toUpperCase() || 'INR';
+  const locale = targetCurrency === 'INR' ? 'en-IN' : 'en-US';
+
   if (showSymbol === undefined || showSymbol === true) {
-    return value.toLocaleString(undefined, {
+    return value.toLocaleString(locale, {
       style: 'currency',
-      currency: currency?.toUpperCase() || 'USD',
+      currency: targetCurrency,
       minimumFractionDigits: digits ?? 2,
       maximumFractionDigits: digits ?? 2,
     });
   }
-  return value.toLocaleString(undefined, {
+  return value.toLocaleString(locale, {
     minimumFractionDigits: digits ?? 2,
     maximumFractionDigits: digits ?? 2,
   });

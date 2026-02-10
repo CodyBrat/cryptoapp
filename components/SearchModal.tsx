@@ -27,7 +27,7 @@ const SearchItem = ({ coin, onSelect, isActiveName }: SearchItemProps) => {
 
     const change = isSearchCoin
         ? (coin as SearchCoin).data?.price_change_percentage_24h ?? 0
-        : (coin as TrendingCoin['item']).data.price_change_percentage_24h?.usd ?? 0;
+        : (coin as TrendingCoin['item']).data.price_change_percentage_24h?.inr ?? 0;
 
     return (
         <CommandItem

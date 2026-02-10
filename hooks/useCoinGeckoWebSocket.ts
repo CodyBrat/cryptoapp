@@ -43,7 +43,7 @@ export const useCoinGeckoWebSocket = ({
             }
             if (msg.c === 'C1') {
                 setPrice({
-                    usd: msg.p ?? 0,
+                    inr: msg.p ?? 0,
                     coin: msg.i,
                     price: msg.p,
                     change24h: msg.pp,

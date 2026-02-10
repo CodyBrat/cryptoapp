@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/select';
 
 const Converter = ({ symbol, icon, priceList }: ConverterProps) => {
-  const [currency, setCurrency] = useState('usd');
+  const [currency, setCurrency] = useState('inr');
   const [amount, setAmount] = useState('10');
 
   const convertedPrice = (parseFloat(amount) || 0) * (priceList[currency] || 0);

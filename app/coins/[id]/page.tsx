@@ -14,7 +14,7 @@ const Page = async ({ params }: NextPageProps) => {
             dex_pair_format: 'contract_address',
         }),
         fetcher<OHLCData[]>(`/coins/${id}/ohlc`, {
-            vs_currency: 'usd',
+            vs_currency: 'inr',
             days: 1,
             interval: 'hourly',
             precision: 'full',
@@ -32,7 +32,7 @@ const Page = async ({ params }: NextPageProps) => {
     const coinDetails = [
         {
             label: 'Market Cap',
-            value: formatCurrency(coinData.market_data.market_cap.usd),
+            value: formatCurrency(coinData.market_data.market_cap.inr),
         },
         {
             label: 'Market Cap Rank',
@@ -40,7 +40,7 @@ const Page = async ({ params }: NextPageProps) => {
         },
         {
             label: 'Total Volume',
-            value: formatCurrency(coinData.market_data.total_volume.usd),
+            value: formatCurrency(coinData.market_data.total_volume.inr),
         },
         {
             label: 'Website',

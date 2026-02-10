@@ -87,7 +87,11 @@ export const getChartConfig = (
   },
   localization: {
     priceFormatter: (price: number) =>
-      '$' + price.toLocaleString(undefined, { maximumFractionDigits: 2 }),
+      '₹' +
+      price.toLocaleString('en-IN', {
+        maximumFractionDigits: 2,
+        minimumFractionDigits: 2,
+      }),
   },
 });
 
